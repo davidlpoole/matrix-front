@@ -65,13 +65,25 @@ export const {
 } = peopleAdapter.getSelectors((state) => state.people)
 
 
+
+function compare(a, b) {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+}
+
 export const selectPeopleIds = createSelector(
   // First, pass one or more "input selector" functions:
   selectPeople,
   // Then, an "output selector" that receives all the input results as arguments
   // and returns a final result value
-  (people) => people.map((people) => people.id)
+  (people) => people.sort(compare).map((people) => people.id)
 )
+
 
 // export const selectFilteredPeople = createSelector(
 //   // First input selector: all people

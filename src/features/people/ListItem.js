@@ -15,8 +15,6 @@ const ListItem = ({ id }) => {
   const person = useSelector((state) => selectPeopleById(state, id))
   const { name, department, site, position, shift } = person
 
-  // const dispatch = useDispatch()
-
   // const handleCompletedChanged = () => {
   //   dispatch(todoToggled(todo.id))
   // }
@@ -37,9 +35,19 @@ const ListItem = ({ id }) => {
   // ))
 
   return (
-    <li>
-      <div onClick={onDelete}>{name} {site} {department} {position} {shift}</div>
-    </li>
+    <tr>
+      <td>{name}</td>
+      <td>{site}</td>
+      <td>{department}</td>
+      <td>{position}</td>
+      <td>{shift}</td>
+      <td>
+        <button>view</button>
+        <button>edit</button>
+        <button>duplicate</button>
+        <button onClick={onDelete}>delete</button>
+      </td>
+    </tr>
   )
 }
 

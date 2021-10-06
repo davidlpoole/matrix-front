@@ -3,23 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { saveNewPerson, selectPeopleIds } from './peopleSlice';
 import ListItem from './ListItem';
+import { ImportPeople } from './import_people';
 
 export function List() {
 
   const dispatch = useDispatch()
 
-
   const people = useSelector(selectPeopleIds)
-
-  // const testPerson = {
-  //   name: 'Mike',
-  //   position: 'DC',
-  //   site: 'MTW',
-  //   department: 'Warehouse',
-  //   shift: 'AM',
-  // }
-
-
 
   const useField = (type) => {
     const [value, setValue] = useState('')
@@ -58,12 +48,13 @@ export function List() {
     return (
       <div>
         <form onSubmit={onAdd}>
-          <div><input {...name} placeholder='name' /></div>
-          <div><input {...site} placeholder='site' /></div>
-          <div><input {...department} placeholder='department' /></div>
-          <div><input {...shift} placeholder='shift' /></div>
-          <div><input {...position} placeholder='position' /></div>
-          <button type='submit'>addTest</button>
+          <div><input {...name} placeholder='Name' /></div>
+          <div><input {...site} placeholder='Site' /></div>
+          <div><input {...department} placeholder='Department' /></div>
+          <div><input {...shift} placeholder='Shift' /></div>
+          <div><input {...position} placeholder='Position' /></div>
+          <button type='submit'>Add Person</button>
+          <ImportPeople />
         </form>
       </div>
     )
@@ -77,10 +68,23 @@ export function List() {
     <div>
       <div>
         <AddPersonForm />
+        <table style={{ "width": "100%" }}>
+          <thead style={{ "font-weight": "bold" }}>
+            <tr>
+              <td>Name</td>
+              <td>Site</td>
+              <td>Department</td>
+              <td>Position</td>
+              <td>Shift</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+          <tbody>
+            {renderedListItems}
+          </tbody>
+
+        </table>
       </div>
-      <ul>
-        {renderedListItems}
-      </ul>
     </div>
   )
 }
