@@ -66,11 +66,11 @@ export const {
 
 
 
-function compare(a, b) {
-  if (a.name < b.name) {
+function sortByName(a, b) {
+  if (a.name.toUpperCase() < b.name.toUpperCase()) {
     return -1;
   }
-  if (a.name > b.name) {
+  if (a.name.toUpperCase() > b.name.toUpperCase()) {
     return 1;
   }
   return 0;
@@ -81,7 +81,7 @@ export const selectPeopleIds = createSelector(
   selectPeople,
   // Then, an "output selector" that receives all the input results as arguments
   // and returns a final result value
-  (people) => people.sort(compare).map((people) => people.id)
+  (people) => people.sort(sortByName).map((people) => people.id)
 )
 
 

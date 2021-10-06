@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { useField } from '../hooks/hooks';
 import { saveNewPerson, selectPeopleIds } from './peopleSlice';
 import ListItem from './ListItem';
 import { ImportPeople } from './import_people';
@@ -8,21 +9,7 @@ import { ImportPeople } from './import_people';
 export function List() {
 
   const dispatch = useDispatch()
-
   const people = useSelector(selectPeopleIds)
-
-  const useField = (type) => {
-    const [value, setValue] = useState('')
-    const onChange = (event) => {
-      setValue(event.target.value)
-    }
-
-    return {
-      type,
-      value,
-      onChange
-    }
-  }
 
   const AddPersonForm = () => {
 
@@ -51,8 +38,8 @@ export function List() {
           <div><input {...name} placeholder='Name' /></div>
           <div><input {...site} placeholder='Site' /></div>
           <div><input {...department} placeholder='Department' /></div>
-          <div><input {...shift} placeholder='Shift' /></div>
           <div><input {...position} placeholder='Position' /></div>
+          <div><input {...shift} placeholder='Shift' /></div>
           <button type='submit'>Add Person</button>
           <ImportPeople />
         </form>
@@ -69,7 +56,7 @@ export function List() {
       <div>
         <AddPersonForm />
         <table style={{ "width": "100%" }}>
-          <thead style={{ "font-weight": "bold" }}>
+          <thead style={{ "fontWeight": "bold" }}>
             <tr>
               <td>Name</td>
               <td>Site</td>
