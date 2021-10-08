@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useField } from '../hooks/hooks';
 import { saveNewPerson, selectPeopleIds } from './peopleSlice';
 import ListItem from './ListItem';
-import { ImportPeople } from './import_people';
+import NewPersonForm from './NewPersonForm'
+// import { ImportPeople } from './import_people';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function List() {
 
@@ -34,6 +37,7 @@ export function List() {
 
     return (
       <div>
+        <NewPersonForm/>
         <form onSubmit={onAdd}>
           <div><input {...name} placeholder='Name' /></div>
           <div><input {...site} placeholder='Site' /></div>
@@ -41,7 +45,7 @@ export function List() {
           <div><input {...position} placeholder='Position' /></div>
           <div><input {...shift} placeholder='Shift' /></div>
           <button type='submit'>Add Person</button>
-          <ImportPeople />
+          {/* <ImportPeople /> */}
         </form>
       </div>
     )
